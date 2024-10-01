@@ -2057,8 +2057,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83b38ba40e3f472418db7ff074de9fa7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  anim: {fileID: 0}
-  rb: {fileID: 0}
+  health: 0
+  anim: {fileID: 1333825029}
+  rb: {fileID: 1333825030}
+  velocity: {x: -1, y: 0}
+  movePoints:
+  - {fileID: 1598214757}
+  - {fileID: 232366916}
+--- !u!95 &1333825029 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 9576784, guid: 3eeab7ca4bdca4ba382826bdc99b4911, type: 3}
+  m_PrefabInstance: {fileID: 341433136}
+  m_PrefabAsset: {fileID: 0}
+--- !u!50 &1333825030 stripped
+Rigidbody2D:
+  m_CorrespondingSourceObject: {fileID: 5099268, guid: 3eeab7ca4bdca4ba382826bdc99b4911, type: 3}
+  m_PrefabInstance: {fileID: 341433136}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1346488479
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2886,8 +2901,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88bfa7282f07ea744923a8b979a49d4f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  health: 0
   anim: {fileID: 0}
   rb: {fileID: 0}
+  attackRange: 6
+  player: {fileID: 0}
+  bullet: {fileID: 115806, guid: 40466c5ac40024bbca1e4b144cdf43c2, type: 3}
+  bulletSpawnPoint: {fileID: 1003797968}
+  bulletWaitTime: 1.5
+  bulletTimer: 0
 --- !u!1001 &1967054402
 PrefabInstance:
   m_ObjectHideFlags: 0
