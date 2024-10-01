@@ -4,8 +4,11 @@ using UnityEngine;
 
 public abstract class Character : MonoBehaviour
 {
+    // สร้าง Constructor เป็น Intialize = public void Character(int newHp){ Hp = new Hp;} 
+
     // ตั้งค่าพวก Attributes ที่เป็น pubic ex: +Health: int {get; set;}
-    private int health;
+    // [SerializeField] = Attribute ทำหน้าที่ให้ Private เห็นได้ใน Inspector
+    [SerializeField] private int health;
    public int Health 
     {
         get 
@@ -33,4 +36,9 @@ public abstract class Character : MonoBehaviour
     { 
     Health -= damage;   
     }//End Method TakeDamage
+
+    public void Init(int newHealth)
+    {
+        Health = newHealth;
+    } // End Health constructor
 }//End abstract

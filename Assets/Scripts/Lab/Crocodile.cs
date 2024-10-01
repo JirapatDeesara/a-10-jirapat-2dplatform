@@ -9,6 +9,13 @@ public class Crocodile : Enemy // แดงเพราะติด Abstract
     // -player: Player
     private Player player;
     //แก้แดง
+    // ใส่ Private void Start ใน class ลูกทุกตัว
+    private void Start()
+    {
+        Init(100);
+        Debug.Log(Health);
+        Behaviour();
+    }
     public override void Behaviour()
     {
         Debug.Log("Crocodile.Behaviour");
