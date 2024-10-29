@@ -29,12 +29,20 @@ public abstract class Character : MonoBehaviour
     // +IsDead(): bool
     public bool IsDead()
     {
-      return  Health <= 0; // ตายยัง???ถ้าน้อยกว่าหรือเท่ากับ 0 คือ ตุยเย่   
+        if (health <= 0)
+        {
+            Destroy(this.gameObject);
+            return true;
+        } 
+      else return false; // ตายยัง???ถ้าน้อยกว่าหรือเท่ากับ 0 คือ ตุยเย่   
     }// End Method IsDead
     // +TakeDamage(int):void
     public void TakeDamage(int damage)
     { 
-    Health -= damage;   
+    Health -= damage;
+        
+        IsDead();
+
     }//End Method TakeDamage
 
     public void Init(int newHealth)

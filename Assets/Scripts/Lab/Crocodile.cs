@@ -1,17 +1,24 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
-public class Crocodile : Enemy // แดงเพราะติด Abstract
+public class Crocodile : Enemy, IShootable // แดงเพราะติด Abstract
 {
-    [SerializeField]private float attackRange;
+    [field: SerializeField]
+    float attackRange;
+    public float AttackRange { get { return attackRange; } set { attackRange = value; } }
     // -player: Player
     [SerializeField]private Player player;
     // สร้างกระสุน
-    [SerializeField] private GameObject bullet;
-    [SerializeField] private Transform  bulletSpawnPoint;
-    [SerializeField] private float bulletWaitTime;
-    [SerializeField] private float bulletTimer;
+    [field: SerializeField]
+    GameObject bullet;
+    public GameObject Bullet { get { return bullet; } set { bullet = value; } }
+    [field : SerializeField]
+    Transform bulletSpawnPoint;
+    public Transform BulletSpawnPoint { get { return bulletSpawnPoint; } set { bulletSpawnPoint = value; } }
+    [field : SerializeField]public float bulletWaitTime { get; set; }
+     [field : SerializeField]public float bulletTimer { get; set; }
     //แก้แดง
     // ใส่ Private void Start ใน class ลูกทุกตัว
     private void Start()
@@ -41,11 +48,12 @@ public class Crocodile : Enemy // แดงเพราะติด Abstract
             Shoot();
         }
     }// End Override
-    private void Shoot()
+    public void Shoot()
     {
         if (bulletTimer < 0)
         {
             bullet = Instantiate(bullet, bulletSpawnPoint.position, Quaternion.identity);
+            
         } // End if bulletTimer
        
     }
