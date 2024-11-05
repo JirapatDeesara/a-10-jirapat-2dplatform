@@ -15,19 +15,30 @@ public class Banana : Weapon // base class from Weapon
     // + Move(): void
     public override void Move()
     {
-        Debug.Log("Banana move with constant speed using Transform");
+       // Debug.Log("Banana move with constant speed using Transform");
+       // s = vt aka distance = speed * time
+       float newX = transform.position.x + speed * Time.fixedDeltaTime;
+       float newY = transform.position.y;
+        Vector2 newPosition = new Vector2(newX, newY);  
+        transform.position = newPosition;
     }// End Override Move() in Banana
-    public override void OnHitWith(Character B)
+    public override void OnHitWith(Character character)
     {
-
+        if (character is Enemy)
+        {
+            character.TakeDamage(this.Damage);
+        } return;
     } // End OnHitWith method Banana
     // Start 
     void Start()
     {
-        Damage = 30;
-        speed = 4f;
-        Move();
+        Damage = 10;
+        speed = 4.0f * GetShootDirection();
+       
     }// End Start Banana
-
+    private void FixedUpdate()
+    {
+        Move();
+    }
 }// End Class Banana
 

@@ -17,6 +17,7 @@ public abstract class Weapon : MonoBehaviour   // Class Weapon ?? Abstract
             damage = value;
         }
     }
+    public IShootable shooter;
     public void Hitdamage(int newDamage)
     {
         Damage = newDamage;
@@ -25,18 +26,34 @@ public abstract class Weapon : MonoBehaviour   // Class Weapon ?? Abstract
     protected string owner;
     // Method
     // + OnHitWith (Character):void [abstract]
-    public abstract void OnHitWith(Character W);
+    public abstract void OnHitWith(Character character);
     // End OnHitWith Method on Weapon
 
     // + Move(): void [Abstracted]
     public abstract void Move();
-
+    // Constructor
+    public void Init(int _damage, IShootable _owner)
+    {
+        Damage = _damage;
+        shooter = _owner;
+    }
 
     // GetShootDirection():int
     public int GetShootDirection()
     {
-        return 1;
+        float shootDir = shooter.BulletSpawnPoint.position.x  - shooter.BulletSpawnPoint.parent.position.x;
+        if (shootDir > 0) 
+        {
+            return 1;
+        }
+        else return -1;
     }// End GetShootDirection method
+  
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        OnHitWith(other.GetComponent<Character>());
+        Destroy(this.gameObject, 5f);
+    }
 
-
+   
 }// End Class Weapon

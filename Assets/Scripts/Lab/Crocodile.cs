@@ -19,6 +19,7 @@ public class Crocodile : Enemy, IShootable // แดงเพราะติด Abstract
     public Transform BulletSpawnPoint { get { return bulletSpawnPoint; } set { bulletSpawnPoint = value; } }
     [field : SerializeField]public float bulletWaitTime { get; set; }
      [field : SerializeField]public float bulletTimer { get; set; }
+    
     //แก้แดง
     // ใส่ Private void Start ใน class ลูกทุกตัว
     private void Start()
@@ -52,8 +53,12 @@ public class Crocodile : Enemy, IShootable // แดงเพราะติด Abstract
     {
         if (bulletTimer < 0)
         {
+            //animator.SetTrigger("Shoot");
             bullet = Instantiate(bullet, bulletSpawnPoint.position, Quaternion.identity);
-            
+            /*GameObject obj = Instantiate(bullet, bulletSpawnPoint.position, Quaternion.identity);
+            Rock rockScript = obj.GetComponent<Rock>();
+            rockScript.Init(20, this);
+           */
         } // End if bulletTimer
        
     }

@@ -17,7 +17,10 @@ public class Player : Character, IShootable
     {
         if (Input.GetButtonDown("Fire1") && bulletWaitTime >= bulletTimer)
         {
-            Instantiate(bullet, bulletSpawnPoint.position, Quaternion.identity);
+            GameObject obj = Instantiate(bullet, bulletSpawnPoint.position, Quaternion.identity);
+            Banana banana = obj.GetComponent<Banana>();
+            banana.Init(10, this);
+            bulletWaitTime = 0;
         }// Input = get keyboard/mouse input to click
     }
 
@@ -36,5 +39,21 @@ public class Player : Character, IShootable
     {
         // นับเวลาถอยหลัง Cooldown
         bulletTimer -= Time.deltaTime;
+
     }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    { // ผู้เล่นชนศัตรูเลือดลด
+        Enemy enemy = collision.gameObject.GetComponent<Enemy>();
+        if (enemy != null)
+        {
+            OnHitWith(enemy);
+        }
+    }// End Collision
+
+    public void OnHitWith(Enemy enemy)
+    {
+        TakeDamage(enemy.DamageHit);
+
+    }// End OnHitwith
 }// End Player

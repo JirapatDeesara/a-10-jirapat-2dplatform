@@ -21,7 +21,7 @@ public abstract class Character : MonoBehaviour
         }
      }
     // +anim: Animator
-    public Animator anim;
+    public Animator animator;
     // +rb: RigidBody2D
     public Rigidbody2D rb;
 
@@ -40,7 +40,7 @@ public abstract class Character : MonoBehaviour
     public void TakeDamage(int damage)
     { 
     Health -= damage;
-        
+        Debug.Log($"Player take {damage} damage, Remaining HP : {Health}");
         IsDead();
 
     }//End Method TakeDamage
